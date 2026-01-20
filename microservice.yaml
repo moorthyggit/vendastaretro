@@ -1,0 +1,45 @@
+syntax: v1
+microservice:
+  name: retrospective
+  goPackageName: github.com/vendasta/retrospective
+  repoUrl: https://github.com/vendasta/retrospective
+  useInternalPackage: true
+  javaArtifactId: "retrospective.v1"
+  protopaths:
+    - excludeFromSdk: false
+      path: retrospective/v1/api.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/retrospective.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/item.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/vote.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/action_item.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/template.proto
+    - excludeFromSdk: false
+      path: retrospective/v1/participant.proto
+  publicroutes: []
+
+environments:
+  demo:
+    projectId: repcore-demo
+    replicas: 1
+    maxReplicas: 3
+    cpu: 100m
+    memory: 128Mi
+    maxCpu: 500m
+    maxMemory: 512Mi
+    serviceAccount: retrospective-demo@repcore-demo.iam.gserviceaccount.com
+    podEnv: {}
+  prod:
+    projectId: repcore-prod
+    replicas: 2
+    maxReplicas: 10
+    cpu: 200m
+    memory: 256Mi
+    maxCpu: 1000m
+    maxMemory: 1Gi
+    serviceAccount: retrospective-prod@repcore-prod.iam.gserviceaccount.com
+    podEnv: {}
